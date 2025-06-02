@@ -20,7 +20,9 @@ const BlogList = () => {
         </button>
         <button
           className={
-            menu === "Technology" && "bg-black text-white py-1 px-4 rounded-sm"
+            menu === "Technology"
+              ? "bg-black text-white py-1 px-4 rounded-sm"
+              : ""
           }
           onClick={() => {
             setmenu("Technology");
@@ -30,7 +32,7 @@ const BlogList = () => {
         </button>
         <button
           className={
-            menu === "Startup" && "bg-black text-white py-1 px-4 rounded-sm"
+            menu === "Startup" ? "bg-black text-white py-1 px-4 rounded-sm" : ""
           }
           onClick={() => {
             setmenu("Startup");
@@ -40,7 +42,9 @@ const BlogList = () => {
         </button>
         <button
           className={
-            menu === "Lifestyle" && "bg-black text-white py-1 px-4 rounded-sm"
+            menu === "Lifestyle"
+              ? "bg-black text-white py-1 px-4 rounded-sm"
+              : ""
           }
           onClick={() => {
             setmenu("Lifestyle");
@@ -60,6 +64,7 @@ const BlogList = () => {
                 title={item.title}
                 description={item.description}
                 category={item.category}
+                id={item.id}
               />
             );
           })}
