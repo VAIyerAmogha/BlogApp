@@ -1,4 +1,5 @@
 import { ConnectDB } from "@/lib/config/db";
+import BlogModel from "@/lib/models/BlogModel";
 import { writeFile } from "fs/promises";
 const { NextResponse } = require("next/server");
 
@@ -8,10 +9,14 @@ const loadDB = async () => {
 
 loadDB();
 
+// to fetch all blogs
 export async function GET(request) {
-  return NextResponse.json({ msg: "API working" });
+  const blogs = await BlogModel.find({});
+
+  return NextResponse.json({ blogs });
 }
 
+// to create and post a new blog
 export async function POST(request) {
   const formData = await request.formData();
   const timestamp = Date.now();
@@ -29,7 +34,7 @@ export async function POST(request) {
     category: `${formData.get("category")}`,
     author: `${formData.get("author")}`,
     image: `${imgURL}`,
-    authorImg: `${FormData.get("authorImg")}`,
+    authorImg: `${formData.get("authorImg")}`,
   };
 
   await BlogModel.create(blogData);
